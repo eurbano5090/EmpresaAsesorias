@@ -1,6 +1,7 @@
 package com.empresaAsesoria;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Cliente extends Usuario {
 	
@@ -140,4 +141,23 @@ public class Cliente extends Usuario {
 	}
 	
 	
+	// Lista de accidentes asociados al cliente
+	private List<Accidente> accidentes = new ArrayList<>();
+
+	public void agregarAccidente(Accidente accidente) {
+	    if (accidente.getRutCliente().equals(this.getRut())) {
+	        accidentes.add(accidente);
+	    }
+	}
+
+	// Lista de visitas en terreno asociadas al cliente
+	private List<VisitaEnTerreno> visitas = new ArrayList<>();
+
+	public void agregarVisita(VisitaEnTerreno visita) {
+	    if (visita.getRutCliente().equals(this.getRut())) {
+	        visitas.add(visita);
+	    }
+	}
+
+
 }
