@@ -17,7 +17,7 @@ public class VisitaEnTerreno {
 	/**
 	 * 
 	 */
-	public VisitaEnTerreno() {
+	public VisitaEnTerreno() { 
 		super();
 	}
 	/**
