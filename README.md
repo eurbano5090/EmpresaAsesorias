@@ -7,4 +7,4 @@ Tambien tiene problemas de gestión de las empresas clientes, no teniendo clarid
 En esta primera etapa la solución se orienta a:
   Llevar registro de los diferentes tipos de usuarios (Profesionales, Administrador (Empresas Clientes), Clientes (Trabajadores))
   LLevar registro de las capacitaciones
-  Llavar registro de Visitas a Terreno, Accidentes y Revisión de Incidencias en Terreno.
+  Llevar registro de Visitas a Terreno, Accidentes y Revisión de Incidencias en Terreno.
