@@ -14,22 +14,22 @@ public class Contenedor {
 
     public void almacenarCliente(Cliente c) {
         usuarios.add(c);
-        System.out.println("Cliente almacenado: " + c.obtenerNombre());
+        System.out.println("Cliente Registrado: " + c.obtenerNombre());
     }
 
     public void almacenarProfesional(Profesional p) {
         usuarios.add(p);
-        System.out.println("Profesional almacenado: " + p.getNombre());
+        System.out.println("Profesional Registrado: " + p.getNombre());
     }
 
     public void almacenarAdministrador(Administrador a) {
         usuarios.add(a);
-        System.out.println("Administrador almacenado: " + a.getNombre());
+        System.out.println("Administrador Registrado: " + a.getNombre());
     }
 
     public void almacenarCapacitacion(Capacitacion c) {
         capacitaciones.add(c);
-        System.out.println("Capacitación almacenada (ID " + c.getIdCapacitacion() + ")");
+        System.out.println("Capacitación Registrada (ID " + c.getIdCapacitacion() + ")");
     }
 
     public boolean eliminarUsuario(String rut) {
@@ -38,11 +38,11 @@ public class Contenedor {
             Usuario u = (Usuario) it.next();
             if (u.getRut().equals(rut)) {
                 it.remove();
-                System.out.println("Usuario eliminado (RUN " + rut + ")");
+                System.out.println("Usuario eliminado (RUT " + rut + ")");
                 return true;
             }
         }
-        System.out.println("Usuario no encontrado (RUN " + rut + ")");
+        System.out.println("Usuario no encontrado (RUT " + rut + ")");
         return false;
     }
 
@@ -51,7 +51,7 @@ public class Contenedor {
         for (AsesoriaInterface ai : usuarios) {
             Usuario u = (Usuario) ai;
             String fn = u.getFechaNacimiento().format(FMT);
-            System.out.printf("- %s | FN: %s | RUN: %s%n", u.getNombre(), fn, u.getRut());
+            System.out.printf("- %s | FN: %s | RUT: %s%n", u.getNombre(), fn, u.getRut());
         }
     }
 

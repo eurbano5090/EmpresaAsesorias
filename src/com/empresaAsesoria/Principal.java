@@ -36,7 +36,7 @@ public class Principal {
             switch (opcion) {
                 case 1:
                     System.out.println("\n--- Datos Cliente ---");
-                    System.out.print("Ingrese Nombre (10–50 chars):");
+                    System.out.print("Ingrese Nombre (Pimer Nombre y Apellido Paterno (10–50 chars):");
                     String nombreC = scan.nextLine().trim();
                     System.out.print("Fecha de nacimiento (dd/MM/yyyy): ");
                     LocalDate fnC = leerFecha(scan);
@@ -52,7 +52,7 @@ public class Principal {
                     String afp = scan.nextLine().trim();
                     System.out.print("Sistema de salud (1=Fonasa,2=Isapre): ");
                     int salud = Integer.parseInt(scan.nextLine().trim());
-                    System.out.print("Dirección (≤70 chars): ");
+                    System.out.print("Dirección sin Comuna (≤70 chars): ");
                     String dir = scan.nextLine().trim();
                     System.out.print("Comuna (≤50 chars): ");
                     String com = scan.nextLine().trim();
@@ -95,11 +95,11 @@ public class Principal {
                     String nombreA = scan.nextLine().trim();
                     System.out.print("Fecha de nacimiento (dd/MM/yyyy): ");
                     LocalDate fnA = leerFecha(scan);
-                    System.out.print("RUN: ");
+                    System.out.print("RUT: ");
                     String rutA = scan.nextLine().trim();
                     System.out.print("Área (5–20 chars): ");
                     String area = scan.nextLine().trim();
-                    System.out.print("Experiencia previa (≤100 chars): ");
+                    System.out.print("Experiencia previa en años (≤100 chars): ");
                     String exp = scan.nextLine().trim();
 
                     Administrador admin = new Administrador(
@@ -113,7 +113,7 @@ public class Principal {
                     System.out.println("\n--- Datos Capacitación ---");
                     System.out.print("ID Capacitación: ");
                     int idCap = Integer.parseInt(scan.nextLine().trim());
-                    System.out.print("RUN Cliente: ");
+                    System.out.print("RUT Cliente: ");
                     String rutCl = scan.nextLine().trim();
                     System.out.print("Día de la semana (lunes…domingo): ");
                     String dia = scan.nextLine().trim();
@@ -135,7 +135,7 @@ public class Principal {
                     break;
 
                 case 5:
-                    System.out.print("RUN a eliminar: ");
+                    System.out.print("RUT a eliminar: ");
                     cont.eliminarUsuario(scan.nextLine().trim());
                     break;
 
