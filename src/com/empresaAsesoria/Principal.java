@@ -21,10 +21,10 @@ public class Principal {
 
         do {
             System.out.println("\n===== MENÚ PRINCIPAL =====");
-            System.out.println("1. Almacenar Cliente");
-            System.out.println("2. Almacenar Profesional");
-            System.out.println("3. Almacenar Administrador");
-            System.out.println("4. Almacenar Capacitación");
+            System.out.println("1. Registrar Cliente");
+            System.out.println("2. Registrar Profesional");
+            System.out.println("3. Registrar Administrador");
+            System.out.println("4. Registrar Capacitación");
             System.out.println("5. Eliminar Usuario");
             System.out.println("6. Listar Usuarios");
             System.out.println("7. Listar Usuarios por Tipo");
@@ -36,18 +36,18 @@ public class Principal {
             switch (opcion) {
                 case 1:
                     System.out.println("\n--- Datos Cliente ---");
-                    System.out.print("Nombre (10–50 chars): ");
+                    System.out.print("Ingrese Nombre (10–50 chars):");
                     String nombreC = scan.nextLine().trim();
                     System.out.print("Fecha de nacimiento (dd/MM/yyyy): ");
                     LocalDate fnC = leerFecha(scan);
-                    System.out.print("RUN: ");
+                    System.out.print("RUT: ");
                     String rutC = scan.nextLine().trim();
                     System.out.print("Nombres: ");
                     String n1 = scan.nextLine().trim();
                     System.out.print("Apellidos: ");
                     String a1 = scan.nextLine().trim();
                     System.out.print("Teléfono: ");
-                    int tel = Integer.parseInt(scan.nextLine().trim());
+                    long tel = Long.parseLong(scan.nextLine().trim());
                     System.out.print("AFP (4–30 chars): ");
                     String afp = scan.nextLine().trim();
                     System.out.print("Sistema de salud (1=Fonasa,2=Isapre): ");
@@ -60,21 +60,22 @@ public class Principal {
                     int ed = Integer.parseInt(scan.nextLine().trim());
 
                     Cliente cliente = new Cliente(
-                        nombreC, fnC, rutC,
-                        n1, a1, tel,
-                        afp, salud,
-                        dir, com, ed
+                    		nombreC, fnC, rutC,
+                    	    n1, a1, tel,
+                    	    afp, salud,
+                    	    dir, com, ed
+
                     );
                     cont.almacenarCliente(cliente);
                     break;
 
                 case 2:
                     System.out.println("\n--- Datos Profesional ---");
-                    System.out.print("Nombre (10–50 chars): ");
+                    System.out.print("Nombre (10–50 chars):");
                     String nombreP = scan.nextLine().trim();
                     System.out.print("Fecha de nacimiento (dd/MM/yyyy): ");
                     LocalDate fnP = leerFecha(scan);
-                    System.out.print("RUN: ");
+                    System.out.print("RUT: ");
                     String rutP = scan.nextLine().trim();
                     System.out.print("Título (10–50 chars): ");
                     String titulo = scan.nextLine().trim();
