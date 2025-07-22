@@ -1,9 +1,11 @@
 package com.empresaAsesoria;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.util.Scanner;
 
-public class Administrador extends Usuario{
+public class Administrador extends Usuario {
 	
+	static Scanner scan= new Scanner (System.in);
 	private String area;
 	private String exprerienciaPrevia;
 	
@@ -16,8 +18,8 @@ public class Administrador extends Usuario{
 	 * @param area
 	 * @param exprerienciaPrevia
 	 */
-	public Administrador(String area, String exprerienciaPrevia) {
-		super();
+	public Administrador(String nombre, LocalDate fechaNacimiento, String rut,String area, String exprerienciaPrevia) {
+		super(nombre,fechaNacimiento,rut);
 		this.area = area;
 		this.exprerienciaPrevia = exprerienciaPrevia;
 	}
@@ -50,7 +52,24 @@ public class Administrador extends Usuario{
 		this.exprerienciaPrevia = exprerienciaPrevia;
 	}
 	
-	/*** cargar lista con capacitaciones pre*/
-	ArrayList<Administrador>administradores= new ArrayList<>();//inventado 4 
 
+    @Override
+    public void analizarUsuario() {
+        super.analizarUsuario(); 
+        System.out.println("Área: " + area);
+        System.out.println("Años de experiencia: " + getExprerienciaPrevia());
+    }
+
+    public static void crearAdministrador(String nombre, LocalDate fechaNacimiento, String rut) {
+        System.out.print("Área: ");
+        String area = scan.nextLine().trim();
+
+        System.out.print("Experiencia previa: ");
+        String experiencia = scan.nextLine().trim();
+
+        Administrador admin = new Administrador(nombre, fechaNacimiento, rut, area, experiencia);
+        usuarios.add(admin);
+        System.out.println("✅ Administrativo registrado");
+	
+}
 }

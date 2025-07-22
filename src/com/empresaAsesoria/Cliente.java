@@ -1,17 +1,19 @@
 package com.empresaAsesoria;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Scanner;
 
 public class Cliente extends Usuario {
+	static Scanner scan= new Scanner (System.in);
 	
-	private String nombres;
 	private String apellidos;
 	private int telefono;
 	private String AFP;
 	private int sistemaSalud;
 	private String direccion;
 	private String comuna;
-	private String edad;
+	private int edad;
 	/**
 	 * @param nombres
 	 * @param apellidos
@@ -22,10 +24,9 @@ public class Cliente extends Usuario {
 	 * @param comuna
 	 * @param edad
 	 */
-	public Cliente(String nombres, String apellidos, int telefono, String aFP, int sistemaSalud, String direccion,
-			String comuna, String edad) {
-		super();
-		this.nombres = nombres;
+	public Cliente(String nombre, LocalDate fechaNacimiento, String rut, String apellidos, int telefono, String aFP, int sistemaSalud, String direccion,
+			String comuna, int edad) {
+		super(nombre,fechaNacimiento,rut);
 		this.apellidos = apellidos;
 		this.telefono = telefono;
 		AFP = aFP;
@@ -37,15 +38,7 @@ public class Cliente extends Usuario {
 	/**
 	 * @return the nombres
 	 */
-	public String getNombres() {
-		return nombres;
-	}
-	/**
-	 * @param nombres the nombres to set
-	 */
-	public void setNombres(String nombres) {
-		this.nombres = nombres;
-	}
+	
 	/**
 	 * @return the apellidos
 	 */
@@ -121,18 +114,45 @@ public class Cliente extends Usuario {
 	/**
 	 * @return the edad
 	 */
-	public String getEdad() {
+	public int getEdad() {
 		return edad;
 	}
 	/**
 	 * @param edad the edad to set
 	 */
-	public void setEdad(String edad) {
+	public void setEdad(int edad) {
 		this.edad = edad;
 	}
 	
 	/*** cargar lista con clientes (trabajadores ) pre*/
-	ArrayList<Cliente>clientes= new ArrayList<>();//inventado 40
+	
+	public static void crearCliente(String nombre, LocalDate fechaNacimiento, String rut) {
+	    System.out.print("Apellidos: ");
+	    String apellidos = scan.nextLine().trim();
+
+	    System.out.print("Teléfono: ");
+	    int telefono = Integer.parseInt(scan.nextLine().trim());
+
+	    System.out.print("AFP: ");
+	    String afp = scan.nextLine().trim();
+
+	    System.out.print("Sistema salud (1: Fonasa, 2: Isapre): ");
+	    int sistemaSalud = Integer.parseInt(scan.nextLine().trim());
+
+	    System.out.print("Dirección: ");
+	    String direccion = scan.nextLine().trim();
+
+	    System.out.print("Comuna: ");
+	    String comuna = scan.nextLine().trim();
+
+	    System.out.print("Edad: ");
+	    int edad = Period.between(fechaNacimiento, LocalDate.now()).getYears();
+
+	    Cliente cliente = new Cliente(nombre, fechaNacimiento, rut, apellidos, telefono, afp, sistemaSalud, direccion, comuna, edad);
+	    usuarios.add(cliente);
+	    System.out.println("✅ Cliente registrado");
+	    
+	}
 	
 	private static void obtenerNombre() {
 	}
