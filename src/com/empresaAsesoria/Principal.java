@@ -36,7 +36,7 @@ public class Principal {
             switch (opcion) {
                 case 1:
                     System.out.println("\n--- Datos Cliente ---");
-                    System.out.print("Ingrese Nombre (Pimer Nombre y Apellido Paterno (10–50 chars):");
+                    System.out.print("Ingrese Nombre (Nombre Usado y Apellido Paterno (10–50 chars):");
                     String nombreC = scan.nextLine().trim();
                     System.out.print("Fecha de nacimiento (dd/MM/yyyy): ");
                     LocalDate fnC = leerFecha(scan);
