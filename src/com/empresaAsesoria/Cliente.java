@@ -9,7 +9,7 @@ public class Cliente extends Usuario {
 
     private String nombres;
     private String apellidos;
-    private int telefono;
+    private long telefono;
     private String AFP;
     private int sistemaSalud;    // 1=Fonasa, 2=Isapre
     private String direccion;
@@ -26,7 +26,7 @@ public class Cliente extends Usuario {
                    String rut,
                    String nombres,
                    String apellidos,
-                   int telefono,
+                   long telefono,
                    String AFP,
                    int sistemaSalud,
                    String direccion,
@@ -49,7 +49,7 @@ public class Cliente extends Usuario {
     public String getApellidos()  { return apellidos; }
     public void setApellidos(String apellidos) { this.apellidos = apellidos; }
 
-    public int getTelefono()      { return telefono; }
+    public long getTelefono()      { return telefono; }
     public void setTelefono(int telefono) { this.telefono = telefono; }
 
     public String getAFP()        { return AFP; }
