@@ -1,133 +1,71 @@
 package com.empresaAsesoria;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.time.format.DateTimeFormatter;
 
 public class Capacitacion {
-	
-	private int idCapacitacion;
-	private String rutCliente;
-	private String dia;
-	private LocalDateTime horaCapacitacion;
-	private String lugar;
-	private String duracion;
-	private int cantidadAsistentes;
-	/**
-	 * 
-	 */
-	public Capacitacion() {
-		super();
-	}
-	/**
-	 * @param idCapacitacion
-	 * @param rutCliente
-	 * @param dia
-	 * @param horaCapacitacion
-	 * @param lugar
-	 * @param duracion
-	 * @param cantidadAsistentes
-	 */
-	public Capacitacion(int idCapacitacion, String rutCliente, String dia, LocalDateTime horaCapacitacion, String lugar,
-			String duracion, int cantidadAsistentes) {
-		super();
-		this.idCapacitacion = idCapacitacion;
-		this.rutCliente = rutCliente;
-		this.dia = dia;
-		this.horaCapacitacion = horaCapacitacion;
-		this.lugar = lugar;
-		this.duracion = duracion;
-		this.cantidadAsistentes = cantidadAsistentes;
-	}
-	/**
-	 * @return the idCapacitacion
-	 */
-	public int getIdCapacitacion() {
-		return idCapacitacion;
-	}
-	/**
-	 * @param idCapacitacion the idCapacitacion to set
-	 */
-	public void setIdCapacitacion(int idCapacitacion) {
-		this.idCapacitacion = idCapacitacion;
-	}
-	/**
-	 * @return the rutCliente
-	 */
-	public String getRutCliente() {
-		return rutCliente;
-	}
-	/**
-	 * @param rutCliente the rutCliente to set
-	 */
-	public void setRutCliente(String rutCliente) {
-		this.rutCliente = rutCliente;
-	}
-	/**
-	 * @return the dia
-	 */
-	public String getDia() {
-		return dia;
-	}
-	/**
-	 * @param dia the dia to set
-	 */
-	public void setDia(String dia) {
-		this.dia = dia;
-	}
-	/**
-	 * @return the horaCapacitacion
-	 */
-	public LocalDateTime getHoraCapacitacion() {
-		return horaCapacitacion;
-	}
-	/**
-	 * @param horaCapacitacion the horaCapacitacion to set
-	 */
-	public void setHoraCapacitacion(LocalDateTime horaCapacitacion) {
-		this.horaCapacitacion = horaCapacitacion;
-	}
-	/**
-	 * @return the lugar
-	 */
-	public String getLugar() {
-		return lugar;
-	}
-	/**
-	 * @param lugar the lugar to set
-	 */
-	public void setLugar(String lugar) {
-		this.lugar = lugar;
-	}
-	/**
-	 * @return the duracion
-	 */
-	public String getDuracion() {
-		return duracion;
-	}
-	/**
-	 * @param duracion the duracion to set
-	 */
-	public void setDuracion(String duracion) {
-		this.duracion = duracion;
-	}
-	/**
-	 * @return the cantidadAsistentes
-	 */
-	public int getCantidadAsistentes() {
-		return cantidadAsistentes;
-	}
-	/**
-	 * @param cantidadAsistentes the cantidadAsistentes to set
-	 */
-	public void setCantidadAsistentes(int cantidadAsistentes) {
-		this.cantidadAsistentes = cantidadAsistentes;
-	}
-	
-	/*** cargar lista con capacitaciones pre*/
-	ArrayList<Capacitacion>capacitaciones= new ArrayList<>();//inventado 20
-	
-	public static void crearCapacitacion() {}
-	
-	public static void mostrarDetalle() {}
 
+    private int idCapacitacion;
+    private String rutCliente;
+    private String dia;                // lunes…domingo
+    private LocalDateTime hora;        // fecha+hora
+    private String lugar;
+    private String duracion;           // en minutos, como texto
+    private int cantidadAsistentes;    // < 1000
+
+    public Capacitacion() { }
+
+    public Capacitacion(int idCapacitacion,
+                        String rutCliente,
+                        String dia,
+                        LocalDateTime hora,
+                        String lugar,
+                        String duracion,
+                        int cantidadAsistentes) {
+        this.idCapacitacion      = idCapacitacion;
+        this.rutCliente          = rutCliente;
+        this.dia                 = dia;
+        this.hora                = hora;
+        this.lugar               = lugar;
+        this.duracion            = duracion;
+        this.cantidadAsistentes  = cantidadAsistentes;
+    }
+
+    // Getters y setters 
+    /** getter público para que otros vean el RUT */
+    public String getRutCliente() {
+        return rutCliente;
+    }
+
+    /** setter… */
+    public void setRutCliente(String rutCliente) {
+        this.rutCliente = rutCliente;
+    }
+
+    
+    
+    /**  
+     * “La capacitación será en A a las B del día C, y durará D minutos”  
+     */
+    public String mostrarDetalle() {
+        String horaStr = hora.format(DateTimeFormatter.ofPattern("HH:mm"));
+        return String.format(
+            "La capacitación será en %s a las %s del día %s, y durará %s minutos",
+            lugar, horaStr, dia, duracion
+        );
+    }
+
+    @Override
+    public String toString() {
+        String fecha = hora.toLocalDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        String horaStr = hora.format(DateTimeFormatter.ofPattern("HH:mm"));
+        return String.format(
+            "Capacitación[id=%d, cliente=%s, fecha=%s, hora=%s, lugar=%s, duración=%s, asistentes=%d]",
+            idCapacitacion, rutCliente, fecha, horaStr, lugar, duracion, cantidadAsistentes
+        );
+    }
+
+	public String getIdCapacitacion() {
+		return null;
+	}
 }

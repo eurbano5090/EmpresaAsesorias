@@ -2,6 +2,7 @@ package com.empresaAsesoria;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter; //para dar formato a la fecha y hora
 
 public class Accidente {
 
@@ -93,11 +94,19 @@ public class Accidente {
 		return lugar;
 	}
 	/**
-	 * @param lugar the lugar to set
+	 * 
+	 * @param lugar the lugar del accidente to set
+	 * Entre 10 y 50 caracteres.
+	 *  @throws IllegalArgumentException si el texto es nulo o fuera del rango permitido
 	 */
 	public void setLugar(String lugar) {
-		this.lugar = lugar;
+		if (lugar != null && lugar.length() >= 10 && lugar.length() <= 50) {
+			this.lugar = lugar;
+		} else {
+			throw new IllegalArgumentException("El lugar debe tener entre 10 y 50 caracteres.");
+		}
 	}
+	
 	/**
 	 * @return the origen
 	 */
@@ -105,10 +114,16 @@ public class Accidente {
 		return origen;
 	}
 	/**
-	 * @param origen the origen to set
+	 * @param origen the origen del accidente to set
+	 * Máximo 100 caracteres.
+	 * @throws IllegalArgumentException si el texto es nulo o excede el máximo
 	 */
 	public void setOrigen(String origen) {
-		this.origen = origen;
+		if (origen != null && origen.length() <= 100) {
+			this.origen = origen;
+		} else {
+			throw new IllegalArgumentException("El origen no puede exceder los 100 caracteres.");
+		}
 	}
 	/**
 	 * @return the consecuencia
@@ -117,11 +132,30 @@ public class Accidente {
 		return consecuencia;
 	}
 	/**
-	 * @param consecuencia the consecuencia to set
+	 * @param consecuencia the consecuencia del accidente to set
+	 * Máximo 100 caracteres.
+	 *  @throws IllegalArgumentException si el texto es nulo o excede el máximo
 	 */
 	public void setConsecuencia(String consecuencia) {
-		this.consecuencia = consecuencia;
+		if (consecuencia != null && consecuencia.length() <= 100) {
+			this.consecuencia = consecuencia;
+		} else {
+			throw new IllegalArgumentException("Las consecuencias no pueden exceder los 100 caracteres.");
+		}
 	}
 	
-	
+	//Método para mostrar el registro de un accidente
+	@Override
+	public String toString() {
+		DateTimeFormatter formatterFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
+		return "----- Datos del Accidente -----\n" + "ID Accidente: " + idAccidente + "\n" + 
+				"RUT Cliente: " + rutCliente + "\n" + 
+				"Día: " + dia.format(formatterFecha) + "\n" + 
+				"Hora: " + hora.format(formatterHora) + "\n" + 
+				"Lugar: " + lugar + "\n" + 
+				"Origen: " + origen + "\n" + 
+				"Consecuencias: " + consecuencia + "\n";
+	}
+
 }
