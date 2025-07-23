@@ -5,9 +5,9 @@ Estos servicios se desarrollan por profesionales contratados por la empresa de a
 Hasta el minuto la empresa no cuenta con procesos, sistemas de gestión y menos aún con un área de IT, con lo que los registros se llevan de manera manual, no habiendo trazabilidad.
 Tambien tiene problemas de gestión de las empresas clientes, no teniendo claridad de los cobros que realizan.
 En esta primera etapa la solución se orienta a:
-  1. Llevar registro de los diferentes tipos de usuarios (Profesionales, Administrador (Empresas Clientes), Clientes (Trabajadores))
-  2. LLevar registro de las capacitaciones
-  3. Llevar registro de Visitas a Terreno, Accidentes y Revisión de Incidencias en Terreno.
+  Llevar registro de los diferentes tipos de usuarios (Profesionales, Administrador (Empresas Clientes), Clientes (Trabajadores))
+  LLevar registro de las capacitaciones
+  Llevar registro de Visitas a Terreno, Accidentes y Revisión de Incidencias en Terreno.
 Por otra parte, el registro de Visitas a Terreno, Accidentes y Revisión de Incidencias en Terreno no se requiere como parte del Menú de acciones.
 Dicho lo anterior, sólo están las clases desarrolladas pero no se desarrolla menú para que los Profesionales ejecuten las acciones de dichas clases.
 En resumen, el Menú solicitada debe ejecutar las siguientes acciones en esta etapa:
