@@ -2,83 +2,82 @@ package com.empresaAsesoria;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
 public class Profesional extends Usuario {
 
-    private String titulo;
-    private LocalDate fechaIngreso;
+   static Scanner scan= new Scanner (System.in);
+	private String titulo;
+	private LocalDate fechaIngreso;
+	/**
+	 * 
+	 */
+	public Profesional() {
+		super();
+	}
+	/**
+	 * @param titulo
+	 * @param fechaIngreso
+	 */
+	public Profesional(String nombre, LocalDate fechaNacimiento, String rut,String titulo, LocalDate fechaIngreso) {
+		super(nombre,fechaNacimiento,rut);
+		this.titulo = titulo;
+		this.fechaIngreso = fechaIngreso;
+	}
+	/**
+	 * @return the titulo
+	 */
+	public String getTitulo() {
+		return titulo;
+	}
+	/**
+	 * @param titulo the titulo to set
+	 */
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+	/**
+	 * @return the fechaIngreso
+	 */
+	public LocalDate getFechaIngreso() {
+		return fechaIngreso;
+	}
+	/**
+	 * @param fechaIngreso the fechaIngreso to set
+	 */
+	public void setFechaIngreso(LocalDate fechaIngreso) {
+		this.fechaIngreso = fechaIngreso;
+	}
+	
+	
+	 @Override
+	    public void analizarUsuario() {
+	        super.analizarUsuario(); 
+	        System.out.println("Título: " + titulo);
+	        System.out.println("Fecha de Ingreso: " + fechaIngreso);
+	    }
+	 
+	    public static void crearProfesional( String nombre, LocalDate fechaNacimiento, String rut) {
+		    System.out.print("Título: ");
+		    String titulo = scan.nextLine().trim();
 
-    // Constructor sin parámetros
-    public Profesional() {
-        super();
-    }
+		    System.out.print("Fecha ingreso (dd-MM-yyyy): ");
+		    LocalDate fechaIngreso = LocalDate.parse(scan.nextLine().trim(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 
-    // Constructor con todos los atributos (incluye campos de Usuario)
-    public Profesional(
-        String nombre,
-        LocalDate fechaNacimiento,
-        String rut,
-        String titulo,
-        LocalDate fechaIngreso
-    ) {
-        super(nombre, fechaNacimiento, rut);
-        setTitulo(titulo);
-        setFechaIngreso(fechaIngreso);
-    }
+		    Profesional prof = new Profesional(nombre, fechaNacimiento, rut, titulo, fechaIngreso);
+		    usuarios.add(prof);
+		    		}
+	    
+	    @Override
+	    public String toString() {
+	        return String.format(
+	            "Profesional Nombre=%s, RUT=%s, %s, Título=%s, Ingreso=%s]",
+	            getNombre(), getRut(),
+	            mostrarEdad(),
+	            titulo,
+	            fechaIngreso.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+	        );
+	    }
 
-    public String getTitulo() {
-        return titulo;
-    }
 
-    /**
-     * Título obligatorio, 10–50 caracteres.
-     */
-    public void setTitulo(String titulo) {
-        if (titulo == null || titulo.length() < 10 || titulo.length() > 50) {
-            throw new IllegalArgumentException(
-                "El título debe tener entre 10 y 50 caracteres."
-            );
-        }
-        this.titulo = titulo;
-    }
-
-    public LocalDate getFechaIngreso() {
-        return fechaIngreso;
-    }
-
-    /**
-     * Fecha de ingreso obligatoria.
-     */
-    public void setFechaIngreso(LocalDate fechaIngreso) {
-        if (fechaIngreso == null) {
-            throw new IllegalArgumentException("La fecha de ingreso es obligatoria.");
-        }
-        this.fechaIngreso = fechaIngreso;
-    }
-
-    /**
-     * Implementación de AsesoriaInterface:
-     * muestra nombre y RUN (método padre), luego título y fecha de ingreso.
-     */
-    @Override
-    public void analizarUsuario() {
-        super.analizarUsuario();
-        String fi = fechaIngreso.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        System.out.println("Título: " + titulo + " | Fecha de ingreso: " + fi);
-    }
-
-    /**
-     * toString formateado:
-     * Profesional[nombre=…, FN=dd/MM/yyyy, RUN=…, título=…, ingreso=dd/MM/yyyy]
-     */
-    @Override
-    public String toString() {
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String fn = getFechaNacimiento().format(fmt);
-        String fi = fechaIngreso.format(fmt);
-        return String.format(
-            "Profesional[nombre=%s, FN=%s, RUN=%s, título=%s, ingreso=%s]",
-            getNombre(), fn, getRut(), titulo, fi
-        );
-    }
 }
