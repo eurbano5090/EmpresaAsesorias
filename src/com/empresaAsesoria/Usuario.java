@@ -90,33 +90,30 @@ public class Usuario implements AsesoriaInterface {
 	}
 	
 
-	public static void crearUsuario() {
-		Scanner scan = new Scanner(System.in);
-		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		
-		System.out.println("\n--- Registrar Nuevo Usuario ---");
-		System.out.print("Ingrese nombre Usuario: ");
-		String nombre = scan.nextLine().trim();
-		
-		System.out.print("Ingrese fecha de nacimiento (dd-MM-yyyy): ");
-		String fechaStr = scan.nextLine().trim();
+	public static void crearUsuario(Scanner scan) {
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        System.out.println("\n--- Registrar Nuevo Usuario ---");
+        System.out.print("Ingrese nombre preferido por Usuario y primer apellido: ");
+        String nombre = scan.nextLine().trim();
 
-		LocalDate fechaNacimiento = LocalDate.parse(fechaStr, formato);
-		System.out.print("Ingrese rut del usuario: ");
-		String rut = scan.nextLine().trim();
+        System.out.print("Ingrese Fecha de Nacimiento (dd-MM-yyyy): ");
+        LocalDate fn = LocalDate.parse(scan.nextLine().trim(), fmt);
 
-		System.out.print("¿Tipo de usuario? (1: Cliente, 2: Profesional, 3: Administrativo): ");
+        System.out.print("Ingrese Rut del Usuario con puntos, guión y DV: ");
+        String rut = scan.nextLine().trim();
+
+       	System.out.print("Seleccione el Tipo de Usuario (1: Cliente, 2: Profesional, 3: Administrativo): ");
 	    int tipo = Integer.parseInt(scan.nextLine().trim());
 		 switch (tipo) {
-	        case 1 -> Cliente.crearCliente(nombre, fechaNacimiento, rut);
-	        case 2 -> Profesional.crearProfesional(nombre, fechaNacimiento, rut);
-	        case 3 -> Administrador.crearAdministrador(nombre, fechaNacimiento, rut);
+	        case 1 -> Cliente.crearCliente(nombre, fn, rut);
+	        case 2 -> Profesional.crearProfesional(nombre, fn, rut);
+	        case 3 -> Administrador.crearAdministrador(nombre, fn, rut);
 	        default -> System.out.println("❌ Tipo inválido");
 	    }
 
-		System.out.println("✅ 	Usuario registrado con rut " + rut);
+		System.out.println("✅ 	Usuario registrado exitosamente con RUT " + rut);
 		
-	};
+	}
 
 
 
@@ -127,10 +124,10 @@ public class Usuario implements AsesoriaInterface {
         System.out.println("Fecha de nacimiento: " + fechaNacimiento);
     }
 
-	 public String mostrarEdad() {
-	        int edad = Period.between(fechaNacimiento, LocalDate.now()).getYears();
-	        return "El usuario tiene " + edad + " años";
-	    }
+	public String mostrarEdad() {
+		int edad = Period.between(fechaNacimiento,LocalDate.now()).getYears();
+		return " El Usuario tiene " + edad + " años";
+	 }	
+	}
+		
 
-	
-}

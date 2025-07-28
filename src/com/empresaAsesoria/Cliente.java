@@ -6,14 +6,16 @@ import java.util.Scanner;
 
 public class Cliente extends Usuario {
 	static Scanner scan= new Scanner (System.in);
-	
+	private String nombres;
 	private String apellidos;
-	private int telefono;
+	private String telefono;
 	private String AFP;
 	private int sistemaSalud;
 	private String direccion;
 	private String comuna;
 	private int edad;
+
+	
 	/**
 	 * @param nombres
 	 * @param apellidos
@@ -24,9 +26,10 @@ public class Cliente extends Usuario {
 	 * @param comuna
 	 * @param edad
 	 */
-	public Cliente(String nombre, LocalDate fechaNacimiento, String rut, String apellidos, int telefono, String aFP, int sistemaSalud, String direccion,
+	public Cliente(String nombre, LocalDate fechaNacimiento, String rut, String nombres, String apellidos, String telefono, String aFP, int sistemaSalud, String direccion,
 			String comuna, int edad) {
 		super(nombre,fechaNacimiento,rut);
+		this.nombres = nombres;
 		this.apellidos = apellidos;
 		this.telefono = telefono;
 		AFP = aFP;
@@ -38,7 +41,16 @@ public class Cliente extends Usuario {
 	/**
 	 * @return the nombres
 	 */
+	public String getNombres() {
+		return nombres;
+	}
 	
+	/**
+	 * @param nombres the nombres to set
+	 */
+	public void setNombres(String nombres) {
+		this.nombres = nombres;
+	}
 	/**
 	 * @return the apellidos
 	 */
@@ -54,14 +66,17 @@ public class Cliente extends Usuario {
 	/**
 	 * @return the telefono
 	 */
-	public int getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 	/**
 	 * @param telefono the telefono to set
 	 */
-	public void setTelefono(int telefono) {
-		this.telefono = telefono;
+	public void setTelefono(String telefono) {
+        // opcional: valida que sean solo dígitos (y +, - o espacios)
+        if (!telefono.matches("[0-9+\\- ]{6,20}")) {
+            throw new IllegalArgumentException("Teléfono inválido.");
+        }
 	}
 	/**
 	 * @return the aFP
@@ -127,11 +142,14 @@ public class Cliente extends Usuario {
 	/*** cargar lista con clientes (trabajadores ) pre*/
 	
 	public static void crearCliente(String nombre, LocalDate fechaNacimiento, String rut) {
-	    System.out.print("Apellidos: ");
+		System.out.print("Nombres: ");
+	    String nombres = scan.nextLine().trim();
+	    
+		System.out.print("Apellidos: ");
 	    String apellidos = scan.nextLine().trim();
 
 	    System.out.print("Teléfono: ");
-	    int telefono = Integer.parseInt(scan.nextLine().trim());
+	    String telefono = scan.nextLine().trim();
 
 	    System.out.print("AFP: ");
 	    String afp = scan.nextLine().trim();
@@ -139,25 +157,57 @@ public class Cliente extends Usuario {
 	    System.out.print("Sistema salud (1: Fonasa, 2: Isapre): ");
 	    int sistemaSalud = Integer.parseInt(scan.nextLine().trim());
 
-	    System.out.print("Dirección: ");
+	    System.out.print("Dirección sin Comuna: ");
 	    String direccion = scan.nextLine().trim();
 
 	    System.out.print("Comuna: ");
 	    String comuna = scan.nextLine().trim();
 
-	    System.out.print("Edad: ");
 	    int edad = Period.between(fechaNacimiento, LocalDate.now()).getYears();
+        System.out.println("Edad: " + edad);
 
-	    Cliente cliente = new Cliente(nombre, fechaNacimiento, rut, apellidos, telefono, afp, sistemaSalud, direccion, comuna, edad);
+	    Cliente cliente = new Cliente(nombre, fechaNacimiento, rut, nombres, apellidos, telefono, afp, sistemaSalud, direccion, comuna, edad);
 	    usuarios.add(cliente);
-	    System.out.println("✅ Cliente registrado");
-	    
+	    	    
 	}
+
+    /**
+     * Devuelve el nombre completo del cliente (nombre + apellidos).
+     */
+    public String obtenerNombre() {
+        return getNombres() + " " + apellidos;
+    }
+
+    /**
+     * Traduce el código de sistema de salud a texto.
+     */
+    public String obtenerSistemaSalud() {
+        return sistemaSalud == 1
+            ? "Fonasa"
+            : sistemaSalud == 2
+                ? "Isapre"
+                : "Desconocido";
+    }
+    
+    @Override
+    public String toString() {
+        // Formatea Nombre Completo, RUT y Edad y otros
+        return String.format(
+            "Cliente nombre=%s %s, RUT=%s, %s, teléfono=%s, AFP=%s, Salud=%s, Dirección=%s, Comuna=%s",
+            getNombres(), apellidos,
+            getRut(),
+            mostrarEdad(),              // viene de Usuario
+            getTelefono(),
+            AFP,
+            obtenerSistemaSalud(),
+            direccion,
+            comuna
+        );
+    }
+
+
+    }
+
+
 	
-	private static void obtenerNombre() {
-	}
-	private static void obtenerSistemaSalud() {	
-	}
-	
-	
-}
+

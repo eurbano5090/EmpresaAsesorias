@@ -2,6 +2,9 @@ package com.empresaAsesoria;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VisitaEnTerreno {
   
@@ -14,7 +17,7 @@ public class VisitaEnTerreno {
 	/**
 	 * 
 	 */
-	public VisitaEnTerreno() {
+	public VisitaEnTerreno() { 
 		super();
 	}
 	/**
@@ -105,8 +108,35 @@ public class VisitaEnTerreno {
 	 * @param comentarios the comentarios to set
 	 */
 	public void setComentarios(String comentarios) {
-		this.comentarios = comentarios;
+		 if (comentarios != null && comentarios.length() <= 100) {
+		        this.comentarios = comentarios;
+		    } else {
+		        throw new IllegalArgumentException("Los comentarios no pueden exceder los 100 caracteres.");
+		    }
 	}
     
-    
+	
+	//Lista que guarda las revisiones asociadas una visita en terreno.
+	private List<Revision> revisiones = new ArrayList<>();
+
+	public void agregarRevision(Revision revision) {
+	    if (revision.getIdVisita() == this.idVisita) {
+	        revisiones.add(revision);
+	    }
+	}
+
+	//Método para mostrar los datos de la visita en terreno
+	@Override
+	public String toString() {
+		DateTimeFormatter formatterFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
+		return "----- Detalle de la Visita en Terreno -----\n" + 
+				"ID de Visita: " + idVisita + "\n" + 
+				"RUT del Cliente: " + rutCliente + "\n" + 
+				"Fecha: " + dia.format(formatterFecha) + "\n" + 
+				"Hora: " + hora.format(formatterHora) + "\n" + 
+				"Lugar: " + lugar + "\n" + 
+				"Comentarios: " + comentarios + "\n";
+	}
+
 }

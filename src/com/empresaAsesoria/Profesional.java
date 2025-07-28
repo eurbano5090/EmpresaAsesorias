@@ -54,7 +54,7 @@ public class Profesional extends Usuario {
 	    public void analizarUsuario() {
 	        super.analizarUsuario(); 
 	        System.out.println("Título: " + titulo);
-	        System.out.println("Fecha de ingreso: " + fechaIngreso);
+	        System.out.println("Fecha de Ingreso: " + fechaIngreso);
 	    }
 	 
 	    public static void crearProfesional( String nombre, LocalDate fechaNacimiento, String rut) {
@@ -66,6 +66,18 @@ public class Profesional extends Usuario {
 
 		    Profesional prof = new Profesional(nombre, fechaNacimiento, rut, titulo, fechaIngreso);
 		    usuarios.add(prof);
-		    System.out.println("✅ Profesional registrado");
-		}
+		    		}
+	    
+	    @Override
+	    public String toString() {
+	        return String.format(
+	            "Profesional Nombre=%s, RUT=%s, %s, Título=%s, Ingreso=%s]",
+	            getNombre(), getRut(),
+	            mostrarEdad(),
+	            titulo,
+	            fechaIngreso.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+	        );
+	    }
+
+
 }

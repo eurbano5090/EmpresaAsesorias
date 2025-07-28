@@ -7,21 +7,17 @@ public class Administrador extends Usuario {
 	
 	static Scanner scan= new Scanner (System.in);
 	private String area;
-	private String exprerienciaPrevia;
+	private String experienciaPrevia;
 	
-	@Override
-	public String toString() {
-		return "Administrativo []";
-	}
-
+	
 	/**
 	 * @param area
-	 * @param exprerienciaPrevia
+	 * @param experienciaPrevia
 	 */
-	public Administrador(String nombre, LocalDate fechaNacimiento, String rut,String area, String exprerienciaPrevia) {
+	public Administrador(String nombre, LocalDate fechaNacimiento, String rut,String area, String experienciaPrevia) {
 		super(nombre,fechaNacimiento,rut);
 		this.area = area;
-		this.exprerienciaPrevia = exprerienciaPrevia;
+		this.experienciaPrevia = experienciaPrevia;
 	}
 
 	/**
@@ -39,17 +35,17 @@ public class Administrador extends Usuario {
 	}
 
 	/**
-	 * @return the exprerienciaPrevia
+	 * @return the experienciaPrevia
 	 */
-	public String getExprerienciaPrevia() {
-		return exprerienciaPrevia;
+	public String getExperienciaPrevia() {
+		return experienciaPrevia;
 	}
 
 	/**
-	 * @param exprerienciaPrevia the exprerienciaPrevia to set
+	 * @param experienciaPrevia the experienciaPrevia to set
 	 */
-	public void setExprerienciaPrevia(String exprerienciaPrevia) {
-		this.exprerienciaPrevia = exprerienciaPrevia;
+	public void setExperienciaPrevia(String experienciaPrevia) {
+		this.experienciaPrevia = experienciaPrevia;
 	}
 	
 
@@ -57,7 +53,7 @@ public class Administrador extends Usuario {
     public void analizarUsuario() {
         super.analizarUsuario(); 
         System.out.println("Área: " + area);
-        System.out.println("Años de experiencia: " + getExprerienciaPrevia());
+        System.out.println("Años de Experiencia: " + getExperienciaPrevia());
     }
 
     public static void crearAdministrador(String nombre, LocalDate fechaNacimiento, String rut) {
@@ -69,7 +65,19 @@ public class Administrador extends Usuario {
 
         Administrador admin = new Administrador(nombre, fechaNacimiento, rut, area, experiencia);
         usuarios.add(admin);
-        System.out.println("✅ Administrativo registrado");
-	
+        	
 }
+ 
+    @Override
+	 public String toString() {
+       return String.format(
+           "Administrador Nombre=%s, RUT=%s, %s, Área=%s, Experiencia=%s",
+           getNombre(), getRut(),
+           mostrarEdad(),
+           area,
+           experienciaPrevia
+       );
+   }
+   
+    
 }
