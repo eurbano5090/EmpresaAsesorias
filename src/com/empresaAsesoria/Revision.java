@@ -1,5 +1,8 @@
 package com.empresaAsesoria;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Revision {
 	
 	private int idRevision;
@@ -140,6 +143,8 @@ public class Revision {
         "Detalle a Revisar: " + detalleRevisar + "\n" +
         "Estado: " + estadoTexto + "\n";
 	}
+	
+	public static List<Revision> listaRevisiones = new ArrayList<>();
 
 
 }

@@ -117,7 +117,7 @@ public class VisitaEnTerreno {
     
 	
 	//Lista que guarda las revisiones asociadas una visita en terreno.
-	private List<Revision> revisiones = new ArrayList<>();
+	List<Revision> revisiones = new ArrayList<>();
 
 	public void agregarRevision(Revision revision) {
 	    if (revision.getIdVisita() == this.idVisita) {
@@ -139,4 +139,6 @@ public class VisitaEnTerreno {
 				"Comentarios: " + comentarios + "\n";
 	}
 
+	public static List<VisitaEnTerreno> listaVisitas = new ArrayList<>();
 }
+

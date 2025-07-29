@@ -78,6 +78,6 @@ public class Profesional extends Usuario {
 	            fechaIngreso.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
 	        );
 	    }
-
+	  
 
 }

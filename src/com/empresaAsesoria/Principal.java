@@ -11,7 +11,8 @@ public class Principal {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         int opcion;
-
+        /** 1) Cargo datos de prueba*/
+        DatosPrueba.cargarDatos();
         do {
             // Menú de opciones
         	System.out.println();

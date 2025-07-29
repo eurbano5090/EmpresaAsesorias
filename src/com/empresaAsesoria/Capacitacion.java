@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class Capacitacion {
 
     // Lista global de capacitaciones
-    private static final List<Capacitacion> capacitaciones = new ArrayList<>();
+	public static final List<Capacitacion> listaCapacitaciones = new ArrayList<>();
 
     private int idCapacitacion;      // Identificador interno
     private String rutCliente;       // RUT del cliente asociado
@@ -156,7 +156,7 @@ public class Capacitacion {
             LocalDateTime.of(fecha, hora),
             lugar, dur, cant
         );
-        capacitaciones.add(cap);
+        listaCapacitaciones.add(cap);
         System.out.println("✅ Capacitación registrada correctamente.");
     }
    
@@ -164,8 +164,9 @@ public class Capacitacion {
      * Devuelve la lista global de capacitaciones.
      */
     public static List<Capacitacion> getCapacitaciones() {
-        return capacitaciones;
+        return listaCapacitaciones;
     }
+
 
     /**
      * Muestra un mensaje con el detalle de la capacitación:
@@ -191,4 +192,6 @@ public class Capacitacion {
             idCapacitacion, rutCliente, fechaStr, horaStr, lugar, duracion, cantidadAsistentes
         );
     }
-}
+ 
+    }
+

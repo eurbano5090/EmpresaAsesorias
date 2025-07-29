@@ -2,7 +2,9 @@ package com.empresaAsesoria;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter; //para dar formato a la fecha y hora
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Accidente {
 
@@ -157,5 +159,7 @@ public class Accidente {
 				"Origen: " + origen + "\n" + 
 				"Consecuencias: " + consecuencia + "\n";
 	}
+	public static List<Accidente> listaAccidentes = new ArrayList<>();
+	
+	}
 
-}
