@@ -18,3 +18,4 @@ En resumen, el Menú solicitada debe ejecutar las siguientes acciones en esta et
   5. 🔍📂 Listar Usuarios por Tipo
   6. 📖🎓 Listar Capacitaciones
   7. 🛑   Salir
+Se han cargado datos de prueba para facilitar la revisión de la funcionalidad del Menú.
