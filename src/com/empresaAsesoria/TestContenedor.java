@@ -24,7 +24,8 @@ class TestContenedor {
 	        Usuario.getUsuarios().add(new Profesional("Pedro", LocalDate.of(1990, 1, 1), "12345678-9", "TI",  LocalDate.of(2020,11,11)));    
 	        Usuario.getUsuarios().add(new Administrador("Ana", LocalDate.of(1990, 1, 1), "12345678-9", "TI", "10 años"));
 
-	        Contenedor.listarUsuariosPorTipo(3); // Administrador
+	        final int TIPO_ADMINISTRADOR = 3;
+		Contenedor.listarUsuariosPorTipo(TIPO_ADMINISTRADOR); // Administrador
 
 	        String salida = salidaConsola.toString();
 
