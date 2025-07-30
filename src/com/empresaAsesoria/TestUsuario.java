@@ -61,6 +61,23 @@ class TestUsuario {
 
 	      System.setOut(System.out); 
 	  }
+@Test
+void testAnalizarUsuarioBase() {
+    Usuario usuario = new Usuario("Luis", LocalDate.of(1995, 3, 20), "11.111.111-1");
+
+    ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    System.setOut(new PrintStream(outContent));
+
+    usuario.analizarUsuario();
+
+    String salida = outContent.toString();
+    assertTrue(salida.contains("Nombre: Luis"));
+    assertTrue(salida.contains("RUT: 11.111.111-1"));
+    assertTrue(salida.contains("Fecha de nacimiento:"));
+
+    System.setOut(System.out);
+}
+
 	  
 
 	  
